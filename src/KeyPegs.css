@@ -1,0 +1,21 @@
+.keypeg-container {
+  display: flex;
+  align-items: center;
+}
+
+.green-peg-container {
+  display: flex;
+  align-items: center;
+  padding-right: 8px;
+}
+
+.red-peg-container {
+  display: flex;
+  align-items: center;
+  padding-left: 8px;
+}
+
+.pegs-result {
+  font-size: 24px;
+  color: var(--pegs_result__color);
+}

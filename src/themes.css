@@ -1,0 +1,34 @@
+.light-theme {
+  --header_title__color: #27374d;
+  --app_container__background_color: white;
+  --font_awesome_icon__color: #27374d;
+  --modal_content__background_color: white;
+  --modal_content__color: #27374d;
+  --big_circle__unfilled__border_color: #27374d;
+  --big_circle__filled__border_color: #27374d;
+  --check_button__border_color: #27374d;
+  --colors_grid__background_color: white;
+  --colors_grid__border_color: #27374d;
+  --grid_circle__border_color: #27374d;
+  --pegs_result__color: #27374d;
+  --small_circle__border_color: #27374d;
+  --check_button__disabled__opacity: 0.3;
+}
+
+.dark-theme {
+  --header_title__color: white;
+  --app_container__background_color: #27374d;
+  --font_awesome_icon__color: white;
+  --modal_content__background_color: #27374d;
+  --game_rules_container__color: white;
+  --modal_content__color: white;
+  --big_circle__unfilled__border_color: gray;
+  --big_circle__filled__border_color: white;
+  --check_button__border_color: gray;
+  --colors_grid__background_color: #27374d;
+  --colors_grid__border_color: white;
+  --grid_circle__border_color: white;
+  --pegs_result__color: white;
+  --small_circle__border_color: white;
+  --check_button__disabled__opacity: 0.7;
+}

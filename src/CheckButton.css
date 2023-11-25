@@ -1,0 +1,16 @@
+.check-button {
+  border: 1px solid var(--check_button__border_color);
+  text-align: center;
+  padding: 8px 24px;
+  border-radius: 16px;
+  color: var(--check_button__color);
+}
+
+.check-button-enabled {
+  cursor: pointer;
+}
+
+.check-button-disabled {
+  cursor: not-allowed;
+  opacity: var(--check_button__disabled__opacity);
+}

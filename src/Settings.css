@@ -1,0 +1,14 @@
+.settings-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.difficulty-buttons-container {
+  display: flex;
+  gap: 24px;
+}
+
+.difficulty-button {
+  padding: 0 10px;
+}

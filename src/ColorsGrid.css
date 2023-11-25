@@ -1,0 +1,26 @@
+.colors-grid-container {
+  position: absolute;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+  background-color: var(--colors_grid__background_color);
+  border: 1px solid var(--colors_grid__border_color);
+  padding: 5px;
+  z-index: 1;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 4px;
+}
+
+.colors-grid-container::before {
+  content: "";
+  position: absolute;
+  top: -9px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 4px;
+  border-style: solid;
+  border-color: transparent transparent var(--colors_grid__border_color)
+    transparent; /* Triangle color */
+  z-index: 2; /* Above the grid container */
+}

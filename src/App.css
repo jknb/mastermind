@@ -1,0 +1,53 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.app-container {
+  border: 1px solid black;
+  border-radius: 24px;
+  padding: 16px;
+  background-color: var(--app_container__background_color);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {
+  font-family: "Helvetica", sans-serif; /* Replace with your preferred font-family */
+  font-size: 28px; /* Adjust the font size as needed */
+  font-weight: bold; /* Add emphasis to the title */
+  color: var(--header_title__color);
+  letter-spacing: 2px; /* Add some letter spacing */
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2); /* A subtle text shadow */
+  margin-left: 6px;
+}
+
+.icons {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 1px;
+}
+
+.separator {
+  margin: 0;
+  border: 1px solid gray;
+}
+
+.game {
+  margin-top: 12px;
+}
+
+.gameOver {
+  text-align: center;
+}
+
+.font-awesome-icon {
+  cursor: pointer;
+  color: var(--font_awesome_icon__color);
+}
