@@ -34,3 +34,8 @@ export const MODALS = {
   GAMEOVER: "gameover",
   INFO: "info",
 };
+
+export const THEMES = {
+  DARK: "dark",
+  LIGHT: "light",
+};
