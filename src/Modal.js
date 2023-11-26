@@ -1,9 +1,6 @@
-import { memo } from "react";
 import "./Modal.css";
-import { usePropsLogger } from "./hooks/usePropsLogger";
 
 function Modal({ isOpen, onClose, children }) {
-  usePropsLogger({ isOpen, onClose, children });
   if (!isOpen) {
     return null;
   }
@@ -17,4 +14,4 @@ function Modal({ isOpen, onClose, children }) {
   );
 }
 
-export default memo(Modal);
+export default Modal;
