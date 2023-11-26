@@ -1,6 +1,10 @@
 import { useMemo } from "react";
 
-export const useComponentMapper = (Component, n, indexedPropsGenerator) => {
+export const useComponentListCreator = (
+  Component,
+  n,
+  indexedPropsGenerator = () => {}
+) => {
   const collection = useMemo(
     () =>
       new Array(n).fill(null).map((_, index) => {
