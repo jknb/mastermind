@@ -1,8 +1,7 @@
-import { useContext } from "react";
-import { IsGameOverContext } from "./Contexts";
+import { useGameStatusStore } from "./store";
 
 function GameOver() {
-  const [gameStatus] = useContext(IsGameOverContext);
+  const { gameStatus } = useGameStatusStore();
 
   return (
     <>

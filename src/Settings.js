@@ -1,12 +1,10 @@
 import "./Settings.css";
-
-import { useContext } from "react";
-import { SettingsContext } from "./Contexts";
 import { GAME_MODES } from "./constants";
+import { useAppStore } from "./store";
 
 export function Settings() {
-  const [gameSettings, setGameSettings] = useContext(SettingsContext);
-  const { numberOfGuesses, numberOfColors, duplicateColors } = gameSettings;
+  const { settings, actions } = useAppStore();
+  const { numberOfGuesses, numberOfColors, duplicateColors } = settings;
 
   return (
     <div className="settings-container">
@@ -17,7 +15,7 @@ export function Settings() {
           <button
             className="difficulty-button"
             key={mode}
-            onClick={() => setGameSettings(settings)}
+            onClick={() => actions.setGameSettings(settings)}
           >
             {mode}
           </button>
