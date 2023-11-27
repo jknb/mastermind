@@ -3,8 +3,8 @@ import "./CheckButton.css";
 function CheckButton({ isClickable, onClick }) {
   return (
     <button
-      className={`check-button ${
-        isClickable ? "check-button-enabled" : "check-button-disabled"
+      className={`check-button check-button-${
+        isClickable ? "enabled" : "disabled"
       }`}
       onClick={isClickable ? onClick : undefined}
     >
