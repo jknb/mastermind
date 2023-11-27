@@ -1,4 +1,4 @@
-import SmallCircle from "./SmallCircle";
+import KeyPeg from "./KeyPeg";
 import "./KeyPegs.css";
 
 function KeyPegs({ greenPegs, redPegs }) {
@@ -6,11 +6,11 @@ function KeyPegs({ greenPegs, redPegs }) {
     <>
       <div className="keypeg-container">
         <div className="green-peg-container">
-          <SmallCircle size="16px" backgroundColor="green" />
+          <KeyPeg size="16px" backgroundColor="green" />
           <span className="pegs-result">:{greenPegs}</span>
         </div>
         <div className="red-peg-container">
-          <SmallCircle size="16px" backgroundColor="red" />
+          <KeyPeg size="16px" backgroundColor="red" />
           <span className="pegs-result">:{redPegs}</span>
         </div>
       </div>
