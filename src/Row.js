@@ -1,97 +1,74 @@
 import "./Row.css";
-import {
-  calculateRowResult,
-  repeatComponent,
-  transformColorsToNumbers,
-} from "./utils";
-import BigCircle from "./BigCircle";
-import { memo, useContext, useEffect, useState } from "react";
+import { calculateRowResult, transformColorsToNumbers } from "./utils";
+import CodePeg from "./CodePeg";
 import CheckButton from "./CheckButton";
-import { CodeContext, IsGameOverContext } from "./Contexts";
 import KeyPegs from "./KeyPegs";
-import { usePropsLogger } from "./hooks/usePropsLogger";
+import { useAppStore, useGameStatusStore, useModalsStore } from "./store";
+import { useState } from "react";
+import { useComponentListCreator } from "./hooks/useComponentListCreator";
 
-const Row = memo(function Row(props) {
-  usePropsLogger(props);
-  const { onCheck, isRowActive, isLastRow } = props;
-  console.log("row");
+const Row = ({ index }) => {
+  const { code, settings, currentRow, actions } = useAppStore();
+  const { toggleModal } = useModalsStore();
+  const { gameStatus, setGameStatus, endGame } = useGameStatusStore();
 
-  const [code] = useContext(CodeContext);
-  const [gameStatus, setGameStatus] = useContext(IsGameOverContext);
-  usePropsLogger({
-    code,
-    gameStatus,
-    setGameStatus,
-    IsGameOverContext,
-    CodeContext,
-  });
-
-  const [bigCirclesStatus, setBigCirclesStatus] = useState(
+  const [codePegsStatus, setCodePegsStatus] = useState(
     new Array(4)
       .fill(null)
       .map(() => ({ selection: "white", isGridOpen: false }))
   );
   const [isChecked, setIsChecked] = useState(false);
-  const [pegsStatus, setPegsStatus] = useState({ greenPegs: 0, redPegs: 0 });
+  const [keyPegs, setKeyPegs] = useState({ greenPegs: 0, redPegs: 0 });
 
-  const isBigCircleClickable =
-    !gameStatus.finished && isRowActive && !isChecked;
-  const isCheckButtonClickable =
-    !gameStatus.finished &&
-    isRowActive &&
-    bigCirclesStatus.every(({ selection }) => selection !== "white");
-  const isLastRowChecked = isChecked && isLastRow;
+  const isActive = index === currentRow;
+  const isLast = index === settings.numberOfGuesses - 1;
 
   const onCheckClick = () => {
-    const bigCirclesColors = bigCirclesStatus.map(({ selection }) => selection);
-
-    onCheck();
     setIsChecked(true);
     closeCircleGrids();
+    actions.setCurrentRow(currentRow + 1);
 
-    const guess = transformColorsToNumbers(bigCirclesColors);
-    const rowResult = calculateRowResult(guess, code);
-    setPegsStatus(() => rowResult);
-  };
-
-  const closeCircleGrids = () => {
-    setBigCirclesStatus((prevStatus) =>
-      prevStatus.map((bigCircleStatus) => ({
-        ...bigCircleStatus,
-        isGridOpen: false,
-      }))
+    const rowResult = calculateRowResult(
+      transformColorsToNumbers(
+        codePegsStatus.map(({ selection }) => selection)
+      ),
+      code
     );
+    setKeyPegs(rowResult);
+
+    const isWinner = rowResult.greenPegs === code.length;
+    const isFinished = isWinner || isLast;
+    if (isFinished) {
+      endGame(isWinner);
+    }
   };
 
-  const isWinner = pegsStatus.greenPegs === code.length;
-  const isFinished = isWinner || isLastRowChecked;
-  useEffect(() => {
-    if (isFinished !== gameStatus.finished || isWinner !== gameStatus.won) {
-      setGameStatus(() => ({
-        finished: isFinished,
-        won: isWinner,
-      }));
-    }
-  }, [isFinished, isWinner, setGameStatus, gameStatus.finished, gameStatus.won]);
+  const closeCircleGrids = () =>
+    setCodePegsStatus(
+      codePegsStatus.map((peg) => ({ ...peg, isGridOpen: false }))
+    );
 
-  const bigCircles = repeatComponent(BigCircle, 4, (index) => ({
+  const codePegs = useComponentListCreator(CodePeg, 4, (index) => ({
     size: "36px",
-    setBigCirclesStatus,
-    backgroundColor: bigCirclesStatus[index].selection,
-    isClickable: isBigCircleClickable,
-    isGridOpen: bigCirclesStatus[index].isGridOpen,
+    setCodePegs: setCodePegsStatus,
+    backgroundColor: codePegsStatus[index].selection,
+    isClickable: !gameStatus.finished && isActive && !isChecked,
+    isGridOpen: codePegsStatus[index].isGridOpen,
   }));
 
+  const isCheckButtonClickable =
+    !gameStatus.finished &&
+    isActive &&
+    codePegsStatus.every(({ selection }) => selection !== "white");
+
+  const { greenPegs, redPegs } = keyPegs;
   return (
     <div className="row">
-      <div className="bigCircles">{bigCircles}</div>
+      <div className="codePegs">{codePegs}</div>
       <div className="check-container">
         {isChecked ? (
-          <div className="smallCircles">
-            <KeyPegs
-              greenPegs={pegsStatus.greenPegs}
-              redPegs={pegsStatus.redPegs}
-            />
+          <div className="keyPegs">
+            <KeyPegs greenPegs={greenPegs} redPegs={redPegs} />
           </div>
         ) : (
           <CheckButton
@@ -102,6 +79,6 @@ const Row = memo(function Row(props) {
       </div>
     </div>
   );
-});
+};
 
 export default Row;

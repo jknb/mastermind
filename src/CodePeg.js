@@ -1,10 +1,10 @@
 import { useEffect, useRef } from "react";
-import ColorsGrid from "./ColorsGrid";
+import CodePegsSelectorGrid from "./ColorsGrid";
 
-function BigCircle({
+function CodePeg({
   index,
   size = "36px",
-  setBigCirclesStatus,
+  setCodePegs,
   backgroundColor,
   isClickable,
   isGridOpen,
@@ -16,8 +16,8 @@ function BigCircle({
         colorsGridRef.current &&
         !colorsGridRef.current.contains(event.target)
       ) {
-        setBigCirclesStatus((prevStatus) => {
-          return prevStatus.map((status) => ({ ...status, isGridOpen: false }));
+        setCodePegs((codePegs) => {
+          return codePegs.map((status) => ({ ...status, isGridOpen: false }));
         });
       }
     }
@@ -31,7 +31,7 @@ function BigCircle({
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [isGridOpen, setBigCirclesStatus]);
+  }, [isGridOpen, setCodePegs]);
 
   const circleStyle = {
     width: size,
@@ -46,15 +46,20 @@ function BigCircle({
     background: backgroundColor,
   };
 
-  const onCircleClick = () => {
-    setBigCirclesStatus((prevStatus) =>
-      prevStatus.map((status, i) =>
-        index === i
-          ? { ...status, isGridOpen: !isGridOpen }
-          : { ...status, isGridOpen: false }
+  const onCircleClick = () =>
+    setCodePegs((codePegs) =>
+      codePegs.map((status, i) => ({
+        ...status,
+        isGridOpen: index === i ? !isGridOpen : false,
+      }))
+    );
+
+  const onColorSelect = (color) =>
+    setCodePegs((codePegs) =>
+      codePegs.map((el, i) =>
+        i === index ? { isGridOpen: false, selection: color } : el
       )
     );
-  };
 
   return (
     <>
@@ -65,14 +70,8 @@ function BigCircle({
         ></div>
         {isGridOpen && (
           <div ref={colorsGridRef}>
-            <ColorsGrid
-              onColorSelect={(color) => {
-                setBigCirclesStatus((prevStatus) =>
-                  prevStatus.map((el, i) =>
-                    i === index ? { isGridOpen: false, selection: color } : el
-                  )
-                );
-              }}
+            <CodePegsSelectorGrid
+              onColorSelect={onColorSelect}
               backgroundColor={backgroundColor}
             />
           </div>
@@ -82,4 +81,4 @@ function BigCircle({
   );
 }
 
-export default BigCircle;
+export default CodePeg;

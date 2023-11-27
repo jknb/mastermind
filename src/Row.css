@@ -11,13 +11,13 @@
   justify-content: center;
 }
 
-.bigCircles {
+.codePegs {
   display: flex;
   gap: 24px;
   margin: 16px 0 16px 6px;
 }
 
-.smallCircles {
+.keyPegs {
   display: flex;
   gap: 12px;
   margin: 16px 6px 16px 0;
