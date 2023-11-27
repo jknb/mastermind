@@ -8,8 +8,8 @@ export function Settings() {
 
   return (
     <div className="settings-container">
-      <div>Settings</div>
-      <div>Choose difficulty</div>
+      <h2>Settings</h2>
+      <h3>Choose difficulty</h3>
       <div className="difficulty-buttons-container">
         {Object.entries(GAME_MODES).map(([mode, settings]) => (
           <button
@@ -20,8 +20,9 @@ export function Settings() {
             {mode}
           </button>
         ))}
+        <button className="difficulty-button">Custom Settings</button>
       </div>
-      <button>Custom Settings</button>
+
       <div>numberOfGuesses: {numberOfGuesses}</div>
       <div>duplicateColors: {duplicateColors ? "Yes" : "No"}</div>
 
