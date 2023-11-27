@@ -1,7 +1,7 @@
 import Row from "./Row";
-import { COLORS } from "./constants";
-import { useComponentListCreator } from "./hooks/useComponentListCreator";
-import { useAppStore } from "./store";
+import { COLORS } from "../../constants";
+import { useComponentListCreator } from "../../hooks/useComponentListCreator";
+import { useAppStore } from "../../store";
 
 const Rows = () => {
   const { code, gameKey, settings } = useAppStore();

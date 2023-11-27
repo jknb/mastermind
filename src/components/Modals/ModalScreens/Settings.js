@@ -1,6 +1,6 @@
 import "./Settings.css";
-import { GAME_MODES } from "./constants";
-import { useAppStore } from "./store";
+import { GAME_MODES } from "../../../constants";
+import { useAppStore } from "../../../store";
 
 export function Settings() {
   const { settings, actions } = useAppStore();

@@ -1,4 +1,4 @@
-import { useGameStatusStore } from "./store";
+import { useGameStatusStore } from "../../../store";
 
 function GameOver() {
   const { gameStatus } = useGameStatusStore();

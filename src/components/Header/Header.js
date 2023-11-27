@@ -1,13 +1,13 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./Header.css";
 import { faGear, faRotateLeft } from "@fortawesome/free-solid-svg-icons";
-import { useAppStore, useModalsStore, useThemeStore } from "./store";
+import { useAppStore, useModalsStore, useThemeStore } from "../../store";
 import {
   faCircleQuestion,
   faMoon,
   faSun,
 } from "@fortawesome/free-regular-svg-icons";
-import { MODALS } from "./constants";
+import { MODALS } from "../../constants";
 import { useShallow } from "zustand/react/shallow";
 
 const Header = () => {

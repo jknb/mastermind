@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import CodePegsSelectorGrid from "./ColorsGrid";
+import CodePegsSelectorGrid from "../CodePegsSelectorGrid";
 
 function CodePeg({
   index,

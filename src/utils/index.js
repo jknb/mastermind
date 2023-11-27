@@ -1,4 +1,4 @@
-import { COLORS } from "./constants";
+import { COLORS } from "../constants";
 
 export const createCode = () => [1, 1, 1, 1];
 // export const createCode = () =>

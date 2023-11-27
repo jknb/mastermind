@@ -1,8 +1,8 @@
 import "./App.css";
-import { useThemeStore } from "./store";
-import Header from "./Header";
-import Modals from "./Modals";
-import Rows from "./Rows";
+import { useThemeStore } from "../../store";
+import Modals from "../Modals";
+import Header from "../Header";
+import Rows from "../Rows";
 
 function App() {
   const { theme } = useThemeStore();

@@ -1,11 +1,11 @@
 import "./Row.css";
-import { calculateRowResult, transformColorsToNumbers } from "./utils";
-import CodePeg from "./CodePeg";
-import CheckButton from "./CheckButton";
-import KeyPegs from "./KeyPegs";
-import { useAppStore, useGameStatusStore, useModalsStore } from "./store";
+import { calculateRowResult, transformColorsToNumbers } from "../../utils";
+import CodePeg from "../CodePegs/CodePeg";
+import CheckButton from "../CheckButton/CheckButton";
+import KeyPegs from "../KeyPegs/KeyPegs";
+import { useAppStore, useGameStatusStore, useModalsStore } from "../../store";
 import { useState } from "react";
-import { useComponentListCreator } from "./hooks/useComponentListCreator";
+import { useComponentListCreator } from "../../hooks/useComponentListCreator";
 
 const Row = ({ index }) => {
   const { code, settings, currentRow, actions } = useAppStore();

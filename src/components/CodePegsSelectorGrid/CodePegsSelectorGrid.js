@@ -1,8 +1,8 @@
 import { useState } from "react";
 import GridCircle from "./GridCircle";
-import { COLORS } from "./constants";
-import "./ColorsGrid.css";
-import { useComponentListCreator } from "./hooks/useComponentListCreator";
+import { COLORS } from "../../constants";
+import "./CodePegsSelectorGrid.css";
+import { useComponentListCreator } from "../../hooks/useComponentListCreator";
 
 function CodePegsSelectorGrid({ isOpen, onColorSelect, backgroundColor }) {
   const [color, setColor] = useState(backgroundColor);

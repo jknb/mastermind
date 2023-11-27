@@ -1,10 +1,10 @@
 import "./Modal.css";
-import GameOver from "./GameOver";
-import GameRules from "./GameRules";
+import GameOver from "./ModalScreens/GameOver";
+import GameRules from "./ModalScreens/GameRules";
 import Modal from "./Modal";
-import Settings from "./Settings";
-import { MODALS } from "./constants";
-import { useAppStore, useModalsStore } from "./store";
+import Settings from "./ModalScreens/Settings";
+import { MODALS } from "../../constants";
+import { useAppStore, useModalsStore } from "../../store";
 
 const Modals = () => {
   const { modals, toggleModal } = useModalsStore();
