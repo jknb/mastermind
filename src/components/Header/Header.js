@@ -8,12 +8,11 @@ import {
   faSun,
 } from "@fortawesome/free-regular-svg-icons";
 import { MODALS } from "../../constants";
-import { useShallow } from "zustand/react/shallow";
 
 const Header = () => {
-  const { resetGame } = useAppStore(useShallow((state) => state.actions));
+  const { resetGame } = useAppStore((state) => state.actions);
   const { theme, toggleTheme } = useThemeStore();
-  const toggleModal = useModalsStore(useShallow((state) => state.toggleModal));
+  const toggleModal = useModalsStore((state) => state.toggleModal);
 
   return (
     <div className="header">
