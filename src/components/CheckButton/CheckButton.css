@@ -3,7 +3,6 @@
   text-align: center;
   padding: 8px 24px;
   border-radius: 16px;
-  color: var(--check_button__color);
 }
 
 .check-button-enabled {
