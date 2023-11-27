@@ -4,7 +4,7 @@ import { COLORS } from "./constants";
 import "./ColorsGrid.css";
 import { useComponentListCreator } from "./hooks/useComponentListCreator";
 
-function CodePegsSelectorGrid({ onColorSelect, backgroundColor }) {
+function CodePegsSelectorGrid({ isOpen, onColorSelect, backgroundColor }) {
   const [color, setColor] = useState(backgroundColor);
 
   const onGridCircleClick = (index) => {
@@ -21,7 +21,9 @@ function CodePegsSelectorGrid({ onColorSelect, backgroundColor }) {
     onClick: () => onGridCircleClick(index),
   }));
 
-  return <div className="colors-grid-container">{gridCircles}</div>;
+  return (
+    <>{isOpen && <div className="colors-grid-container">{gridCircles}</div>}</>
+  );
 }
 
 export default CodePegsSelectorGrid;
