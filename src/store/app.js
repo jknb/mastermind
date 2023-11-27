@@ -10,7 +10,6 @@ const useAppStore = create((set, get) => ({
   gameKey: true,
 
   actions: {
-    setNewCode: () => set(() => ({ code: createCode() })),
     resetGame: () => {
       get().actions.setNewCode();
       get().actions.setCurrentRow(0);
@@ -19,6 +18,7 @@ const useAppStore = create((set, get) => ({
         .setGameStatus({ finished: false, won: false });
       set((state) => ({ gameKey: !state.gameKey }));
     },
+    setNewCode: () => set(() => ({ code: createCode() })),
     setCurrentRow: (rowIndex) => set(() => ({ currentRow: rowIndex })),
     setGameSettings: (newSettings) => set(() => ({ settings: newSettings })),
   },
