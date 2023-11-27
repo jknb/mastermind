@@ -8,11 +8,12 @@ import {
   faSun,
 } from "@fortawesome/free-regular-svg-icons";
 import { MODALS } from "./constants";
+import { useShallow } from "zustand/react/shallow";
 
 const Header = () => {
-  const { actions } = useAppStore();
+  const { resetGame } = useAppStore(useShallow((state) => state.actions));
   const { theme, toggleTheme } = useThemeStore();
-  const { toggleModal } = useModalsStore();
+  const toggleModal = useModalsStore(useShallow((state) => state.toggleModal));
 
   return (
     <div className="header">
@@ -22,7 +23,7 @@ const Header = () => {
           className="font-awesome-icon"
           icon={faRotateLeft}
           size="2xl"
-          onClick={actions.resetGame}
+          onClick={resetGame}
         />
         <FontAwesomeIcon
           className="font-awesome-icon"
