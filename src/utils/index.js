@@ -1,14 +1,8 @@
-import { COLORS } from "./constants";
+import { COLORS } from "../constants";
 
 export const createCode = () => [1, 1, 1, 1];
 // export const createCode = () =>
 //   Array.apply(null, { length: 4 }).map(() => Math.floor(Math.random() * 9));
-
-export const repeatComponent = (Component, n, indexedPropsGenerator) =>
-  new Array(n).fill(null).map((_, index) => {
-    const indexedProps = indexedPropsGenerator(index);
-    return <Component key={index} {...indexedProps} index={index} />;
-  });
 
 export const transformColorsToNumbers = (colors) =>
   colors.map((colorText) => COLORS.indexOf(colorText));

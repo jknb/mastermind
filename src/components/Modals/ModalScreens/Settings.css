@@ -1,0 +1,41 @@
+.settings-container {
+  text-align: center;
+}
+
+.difficulty-buttons-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.difficulty-button {
+  width: 50%;
+  margin: 8px;
+}
+
+.button-select-custom {
+  margin: 24px 0;
+}
+
+.custom-settings-container {
+}
+
+.custom-settings-button {
+  margin: 24px;
+}
+
+button.button-save {
+  background: green;
+}
+
+button.button-save:hover {
+  background: rgb(20, 221, 20);
+}
+
+button.button-back {
+  background: red;
+}
+
+button.button-back:hover {
+  background: rgb(158, 2, 2);
+}

@@ -18,8 +18,8 @@ function GameRules() {
           shows how many guesses were correct both in color and position
         </li>
         <li>
-          The number of <span style={{ color: "orange" }}>orange</span> circles
-          show how many guesses were correct only in color.
+          The number of <span style={{ color: "red" }}>red</span> circles show
+          how many guesses were correct only in color.
         </li>
       </ul>
     </div>

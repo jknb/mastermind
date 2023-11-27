@@ -17,7 +17,7 @@ export const GAME_MODES = {
     numberOfColors: 6,
     duplicateColors: false,
   },
-  MEDIUM: {
+  NORMAL: {
     numberOfGuesses: 8,
     numberOfColors: 7,
     duplicateColors: true,
@@ -33,4 +33,9 @@ export const MODALS = {
   SETTINGS: "settings",
   GAMEOVER: "gameover",
   INFO: "info",
+};
+
+export const THEMES = {
+  DARK: "dark",
+  LIGHT: "light",
 };

@@ -1,4 +1,4 @@
-function SmallCircle({ size = "16px", backgroundColor = "white" }) {
+function KeyPeg({ size = "16px", backgroundColor = "white" }) {
   const circleStyle = {
     width: size,
     height: size,
@@ -16,4 +16,4 @@ function SmallCircle({ size = "16px", backgroundColor = "white" }) {
   );
 }
 
-export default SmallCircle;
+export default KeyPeg;
