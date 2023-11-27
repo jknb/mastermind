@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import CodePegsSelectorGrid from "./ColorsGrid";
 
 function CodePeg({
@@ -7,18 +7,16 @@ function CodePeg({
   setCodePegs,
   backgroundColor,
   isClickable,
-  isGridOpen,
 }) {
-  const colorsGridRef = useRef(null);
+  const [isGridOpen, setIsGridOpen] = useState(false);
+  const colorsGridTriggerAreaRef = useRef(null);
   useEffect(() => {
     function handleClickOutside(event) {
       if (
-        colorsGridRef.current &&
-        !colorsGridRef.current.contains(event.target)
+        colorsGridTriggerAreaRef.current &&
+        !colorsGridTriggerAreaRef.current.contains(event.target)
       ) {
-        setCodePegs((codePegs) => {
-          return codePegs.map((status) => ({ ...status, isGridOpen: false }));
-        });
+        setIsGridOpen(false);
       }
     }
 
@@ -31,7 +29,7 @@ function CodePeg({
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [isGridOpen, setCodePegs]);
+  }, [isGridOpen]);
 
   const circleStyle = {
     width: size,
@@ -46,36 +44,27 @@ function CodePeg({
     background: backgroundColor,
   };
 
-  const onCircleClick = () =>
-    setCodePegs((codePegs) =>
-      codePegs.map((status, i) => ({
-        ...status,
-        isGridOpen: index === i ? !isGridOpen : false,
-      }))
-    );
+  const onCircleClick = () => setIsGridOpen(!isGridOpen);
 
-  const onColorSelect = (color) =>
+  const onColorSelect = (color) => {
+    setIsGridOpen(false);
     setCodePegs((codePegs) =>
-      codePegs.map((el, i) =>
-        i === index ? { isGridOpen: false, selection: color } : el
-      )
+      codePegs.map((pegColor, i) => (i === index ? color : pegColor))
     );
+  };
 
   return (
     <>
-      <div style={{ position: "relative" }}>
+      <div ref={colorsGridTriggerAreaRef} style={{ position: "relative" }}>
         <div
           style={circleStyle}
           onClick={isClickable ? onCircleClick : undefined}
         ></div>
-        {isGridOpen && (
-          <div ref={colorsGridRef}>
-            <CodePegsSelectorGrid
-              onColorSelect={onColorSelect}
-              backgroundColor={backgroundColor}
-            />
-          </div>
-        )}
+        <CodePegsSelectorGrid
+          isOpen={isGridOpen}
+          onColorSelect={onColorSelect}
+          backgroundColor={backgroundColor}
+        />
       </div>
     </>
   );
