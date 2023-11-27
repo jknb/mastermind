@@ -9,13 +9,11 @@ import { useComponentListCreator } from "./hooks/useComponentListCreator";
 
 const Row = ({ index }) => {
   const { code, settings, currentRow, actions } = useAppStore();
-  const { toggleModal } = useModalsStore();
-  const { gameStatus, setGameStatus, endGame } = useGameStatusStore();
+  const { gameStatus, endGame } = useGameStatusStore();
 
-  const [codePegsStatus, setCodePegsStatus] = useState(
-    new Array(4)
-      .fill(null)
-      .map(() => ({ selection: "white", isGridOpen: false }))
+  const [closedCircleGridKey, setClosedCircleGridKey] = useState(false);
+  const [codePegsColors, setCodePegsColors] = useState(
+    new Array(4).fill(null).map(() => "white")
   );
   const [isChecked, setIsChecked] = useState(false);
   const [keyPegs, setKeyPegs] = useState({ greenPegs: 0, redPegs: 0 });
@@ -25,13 +23,11 @@ const Row = ({ index }) => {
 
   const onCheckClick = () => {
     setIsChecked(true);
-    closeCircleGrids();
+    setClosedCircleGridKey(!closedCircleGridKey);
     actions.setCurrentRow(currentRow + 1);
 
     const rowResult = calculateRowResult(
-      transformColorsToNumbers(
-        codePegsStatus.map(({ selection }) => selection)
-      ),
+      transformColorsToNumbers(codePegsColors),
       code
     );
     setKeyPegs(rowResult);
@@ -43,28 +39,24 @@ const Row = ({ index }) => {
     }
   };
 
-  const closeCircleGrids = () =>
-    setCodePegsStatus(
-      codePegsStatus.map((peg) => ({ ...peg, isGridOpen: false }))
-    );
-
   const codePegs = useComponentListCreator(CodePeg, 4, (index) => ({
     size: "36px",
-    setCodePegs: setCodePegsStatus,
-    backgroundColor: codePegsStatus[index].selection,
+    setCodePegs: setCodePegsColors,
+    backgroundColor: codePegsColors[index],
     isClickable: !gameStatus.finished && isActive && !isChecked,
-    isGridOpen: codePegsStatus[index].isGridOpen,
   }));
 
   const isCheckButtonClickable =
     !gameStatus.finished &&
     isActive &&
-    codePegsStatus.every(({ selection }) => selection !== "white");
+    codePegsColors.every((peg) => peg !== "white");
 
   const { greenPegs, redPegs } = keyPegs;
   return (
     <div className="row">
-      <div className="codePegs">{codePegs}</div>
+      <div key={closedCircleGridKey} className="codePegs">
+        {codePegs}
+      </div>
       <div className="check-container">
         {isChecked ? (
           <div className="keyPegs">
