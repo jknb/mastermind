@@ -42,6 +42,11 @@ const Modals = () => {
         onClose={() => toggleModal(MODALS.SETTINGS, false)}
       >
         <Settings />
+        <div className="modal-button">
+          <button onClick={() => toggleModal(MODALS.SETTINGS, false)}>
+            Close
+          </button>
+        </div>
       </Modal>
     </>
   );
