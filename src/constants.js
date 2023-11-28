@@ -8,21 +8,27 @@ export const COLORS = [
   "teal",
   "magenta",
   "yellow",
+  "turquoise",
+  "lavender",
+  "black",
   "white",
 ];
 
 export const GAME_MODES = {
   EASY: {
+    id: "EASY",
     numberOfGuesses: 8,
     numberOfColors: 6,
     duplicateColors: false,
   },
   NORMAL: {
-    numberOfGuesses: 8,
+    id: "NORMAL",
+    numberOfGuesses: 7,
     numberOfColors: 7,
     duplicateColors: true,
   },
   HARD: {
+    id: "HARD",
     numberOfGuesses: 6,
     numberOfColors: 9,
     duplicateColors: true,
