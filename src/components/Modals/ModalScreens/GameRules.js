@@ -1,11 +1,14 @@
+import useAppStore from "../../../store/app";
+
 function GameRules() {
+  const { settings } = useAppStore();
   return (
     <div style={{ padding: "0 20px" }}>
       <h2>Game Rules</h2>
       <h3>Objective</h3>
       <p>
         A secret combination of 4 colors is selected and you have to guess that
-        combination in 8 or fewer tries to win.
+        combination in {settings.numberOfGuesses} or fewer tries to win.
       </p>
       <h3>How to play</h3>
       <p>
