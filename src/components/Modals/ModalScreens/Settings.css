@@ -11,17 +11,45 @@
 .difficulty-button {
   width: 50%;
   margin: 8px;
+  transform: scale(1);
+}
+
+.difficulty-button-selected {
+  box-shadow: 0 0 10px rgba(52, 152, 219, 0.7);
+  transform: scale(1.05);
 }
 
 .button-select-custom {
   margin: 24px 0;
 }
 
+.input-group {
+  display: flex;
+  gap: 8px;
+}
+
+.labels {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+label {
+  margin-bottom: 4px;
+  font-size: 18px;
+}
+
 .custom-settings-container {
 }
 
 .custom-settings-button {
-  margin: 24px;
+  margin: 8px;
 }
 
 button.button-save {
@@ -30,12 +58,4 @@ button.button-save {
 
 button.button-save:hover {
   background: rgb(20, 221, 20);
-}
-
-button.button-back {
-  background: red;
-}
-
-button.button-back:hover {
-  background: rgb(158, 2, 2);
 }
