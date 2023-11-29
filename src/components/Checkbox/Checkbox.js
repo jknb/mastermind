@@ -1,20 +1,18 @@
 import { forwardRef, useState } from "react";
 
-const Checkbox = forwardRef(function Checkbox({ id, initialValue }, ref) {
-  const [value, setValue] = useState(initialValue);
-  const handleCheckboxChange = (event) => {
-    setValue(event.target.checked);
-  };
-
-  console.log("vao", value);
+const Checkbox = forwardRef(function Checkbox(
+  { id, checked, onCheckboxChange, disabled },
+  ref
+) {
   return (
     <div>
       <input
+        disabled={disabled}
         id={id}
         ref={ref}
         type="checkbox"
-        checked={value}
-        onChange={handleCheckboxChange}
+        checked={checked}
+        onChange={onCheckboxChange}
       />
     </div>
   );

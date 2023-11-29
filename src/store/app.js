@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { GAME_MODES } from "../constants";
+import { GAME_MODES, GAME_PROPS_RANGES } from "../constants";
 import { createCode } from "../utils";
 import useGameStatusStore from "./gameStatus";
 
@@ -8,12 +8,9 @@ const defaultMode = GAME_MODES.EASY;
 const useAppStore = create((set, get) => ({
   settings: {
     ...defaultMode,
-    ranges: {
-      guesses: [6, 10],
-      colors: [4, 12],
-    },
+    ranges: { ...GAME_PROPS_RANGES },
   },
-  code: createCode(defaultMode.duplicateColors),
+  code: createCode(defaultMode.allowDuplicates),
   currentRow: 0,
   gameKey: true,
 
@@ -27,7 +24,7 @@ const useAppStore = create((set, get) => ({
       set((state) => ({ gameKey: !state.gameKey }));
     },
     setNewCode: () =>
-      set(() => ({ code: createCode(get().settings.duplicateColors) })),
+      set(() => ({ code: createCode(get().settings.allowDuplicates) })),
     setCurrentRow: (rowIndex) => set(() => ({ currentRow: rowIndex })),
     setGameSettings: (partialSettings) =>
       set((state) => ({ settings: { ...state.settings, ...partialSettings } })),

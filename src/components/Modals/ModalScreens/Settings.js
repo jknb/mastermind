@@ -1,26 +1,27 @@
 import "./Settings.css";
 import { GAME_MODES } from "../../../constants";
-import { useAppStore, useModalsStore } from "../../../store";
+import { useAppStore } from "../../../store";
 import { useRef, useState } from "react";
-import Slider from "../../Slider";
-import Checkbox from "../../Checkbox";
-import LabelComponent from "../../Label";
+import Inputs from "../../Inputs";
 
 export function Settings() {
   const { settings, actions } = useAppStore();
-  const { numberOfGuesses, numberOfColors, duplicateColors } = settings;
   const [customSettingsClicked, setCustomSettingsClicked] = useState(false);
 
-  const numberOfGuessesRef = useRef();
-  const numberOfColorsRef = useRef();
-  const duplicateColorsRef = useRef();
+  const guessesRef = useRef();
+  const colorsRef = useRef();
+  const pegsRef = useRef();
+  const allowDuplicatesRef = useRef();
+  const allowBlanksRef = useRef();
 
   const onSaveClick = () => {
     actions.setGameSettings({
       id: "CUSTOM",
-      numberOfGuesses: +numberOfGuessesRef.current.value,
-      numberOfColors: +numberOfColorsRef.current.value,
-      duplicateColors: duplicateColorsRef.current.checked,
+      guesses: +guessesRef.current.value,
+      colors: +colorsRef.current.value,
+      pegs: +pegsRef.current.value,
+      allowDuplicates: allowDuplicatesRef.current.checked,
+      allowBlanks: allowBlanksRef.current.checked,
     });
   };
 
@@ -30,34 +31,16 @@ export function Settings() {
       {customSettingsClicked ? (
         <div className="custom-settings-container">
           <h3>Custom Settings</h3>
-          <div className="input-group">
-            <div className="labels">
-              <LabelComponent htmlFor="guessesNumber">Guesses:</LabelComponent>
-              <LabelComponent htmlFor="hasDuplicates">
-                Duplicate colors:
-              </LabelComponent>
-              <LabelComponent htmlFor="colorsNumber">Colors:</LabelComponent>
-            </div>
-            <div className="inputs">
-              <Slider
-                id="guessesNumber"
-                ref={numberOfGuessesRef}
-                initialValue={numberOfGuesses}
-                range={settings.ranges.guesses}
-              />
-              <Checkbox
-                id="hasDuplicates"
-                ref={duplicateColorsRef}
-                initialValue={duplicateColors}
-              />
-              <Slider
-                id="colorsNumber"
-                ref={numberOfColorsRef}
-                initialValue={numberOfColors}
-                range={settings.ranges.colors}
-              />
-            </div>
-          </div>
+          <Inputs
+            isEditable={true}
+            refs={{
+              guessesRef,
+              colorsRef,
+              pegsRef,
+              allowDuplicatesRef,
+              allowBlanksRef,
+            }}
+          />
           <button
             className="custom-settings-button button-back"
             onClick={() => setCustomSettingsClicked(false)}
@@ -88,6 +71,16 @@ export function Settings() {
                 {mode}
               </button>
             ))}
+            <Inputs
+              isEditable={false}
+              refs={{
+                guessesRef,
+                colorsRef,
+                pegsRef,
+                allowDuplicatesRef,
+                allowBlanksRef,
+              }}
+            />
             <button
               className={`difficulty-button button-select-custom ${
                 "CUSTOM" === settings.id ? "difficulty-button-selected" : ""

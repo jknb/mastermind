@@ -10,7 +10,7 @@ const Rows = () => {
 
   return (
     <div key={gameKey} className="game">
-      {useComponentListCreator(Row, settings.numberOfGuesses)}
+      {useComponentListCreator(Row, settings.guesses)}
     </div>
   );
 };

@@ -19,7 +19,7 @@ const Row = ({ index }) => {
   const [keyPegs, setKeyPegs] = useState({ greenPegs: 0, redPegs: 0 });
 
   const isActive = index === currentRow;
-  const isLast = index === settings.numberOfGuesses - 1;
+  const isLast = index === settings.guesses - 1;
 
   const onCheckClick = () => {
     setIsChecked(true);

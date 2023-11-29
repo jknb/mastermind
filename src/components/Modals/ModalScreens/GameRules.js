@@ -7,8 +7,9 @@ function GameRules() {
       <h2>Game Rules</h2>
       <h3>Objective</h3>
       <p>
-        A secret combination of 4 colors is selected and you have to guess that
-        combination in {settings.numberOfGuesses} or fewer tries to win.
+        A secret combination of {settings.colors} colors is selected and you
+        have to guess that combination in {settings.guesses} or fewer tries to
+        win.
       </p>
       <h3>How to play</h3>
       <p>

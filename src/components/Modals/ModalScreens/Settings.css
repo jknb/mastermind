@@ -23,28 +23,6 @@
   margin: 24px 0;
 }
 
-.input-group {
-  display: flex;
-  gap: 8px;
-}
-
-.labels {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.inputs {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-label {
-  margin-bottom: 4px;
-  font-size: 18px;
-}
-
 .custom-settings-container {
 }
 

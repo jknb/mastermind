@@ -1,0 +1,22 @@
+.input-group {
+  min-width: 100%;
+  display: flex;
+  gap: 8px;
+}
+
+.labels {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+label {
+  margin-bottom: 4px;
+  font-size: 18px;
+}

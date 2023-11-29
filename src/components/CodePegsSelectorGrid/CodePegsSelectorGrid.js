@@ -7,7 +7,7 @@ import { useAppStore } from "../../store";
 
 function CodePegsSelectorGrid({ isOpen, onColorSelect, backgroundColor }) {
   const [color, setColor] = useState(backgroundColor);
-  const numberOfColors = useAppStore((state) => state.settings.numberOfColors);
+  const numberOfColors = useAppStore((state) => state.settings.colors);
 
   const onGridCircleClick = (index) => {
     const selectedColor = COLORS[index];

@@ -1,25 +1,22 @@
 import { forwardRef, useState } from "react";
 
 const Slider = forwardRef(function Slider(
-  { id, initialValue, range = [0, 100] },
+  { id, value, range = [0, 100], onSliderChange, disabled },
   ref
 ) {
-  const [value, setValue] = useState(initialValue);
-  const handleSliderChange = (event) => {
-    setValue(event.target.value);
-  };
-
+  console.log("di", disabled);
   const [minValue, maxValue] = range;
   return (
     <div>
       <input
+        disabled={disabled}
         id={id}
         ref={ref}
         type="range"
         min={minValue}
         max={maxValue}
         value={value}
-        onChange={handleSliderChange}
+        onChange={onSliderChange}
       />
       <label style={{ fontSize: "22px" }}>{value}</label>
     </div>
