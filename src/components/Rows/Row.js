@@ -13,7 +13,7 @@ const Row = ({ index }) => {
 
   const [closedCircleGridKey, setClosedCircleGridKey] = useState(false);
   const [codePegsColors, setCodePegsColors] = useState(
-    new Array(4).fill(null).map(() => "white")
+    new Array(settings.pegs).fill(null).map(() => "white")
   );
   const [isChecked, setIsChecked] = useState(false);
   const [keyPegs, setKeyPegs] = useState({ greenPegs: 0, redPegs: 0 });
@@ -39,7 +39,7 @@ const Row = ({ index }) => {
     }
   };
 
-  const codePegs = useComponentListCreator(CodePeg, 4, (index) => ({
+  const codePegs = useComponentListCreator(CodePeg, settings.pegs, (index) => ({
     size: "36px",
     setCodePegs: setCodePegsColors,
     backgroundColor: codePegsColors[index],

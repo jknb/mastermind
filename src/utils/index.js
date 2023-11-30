@@ -1,8 +1,8 @@
 import { COLORS } from "../constants";
 
 // export const createCode = () => [1, 1, 1, 1];
-export const createCode = (withDuplicates) =>
-  Array.from({ length: 4 }).reduce((code) => {
+export const createCode = (numberOfPegs, withDuplicates) =>
+  Array.from({ length: numberOfPegs }).reduce((code) => {
     let newDigit;
     do {
       newDigit = Math.floor(Math.random() * 9);
@@ -46,3 +46,6 @@ export const calculateRowResult = (guess, secretCode) => {
 
   return result;
 };
+
+export const getAverage = (arr) =>
+  arr.reduce((avg, cur) => avg + cur) / arr.length;
