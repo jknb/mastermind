@@ -31,9 +31,15 @@
 }
 
 button.button-save {
-  background: green;
+  /* background: rgb(20, 221, 20); */
+  background: #27ae60;
 }
 
 button.button-save:hover {
-  background: rgb(20, 221, 20);
+  /* background: rgb(10, 184, 10); */
+  background: #55d68d;
+}
+
+button.button-save:disabled {
+  opacity: 0.5;
 }
