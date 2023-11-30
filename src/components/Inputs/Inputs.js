@@ -3,35 +3,41 @@ import { useAppStore } from "../../store";
 import Checkbox from "../Checkbox";
 import LabelComponent from "../Label";
 import Slider from "../Slider";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import {
+  CUSTOM_GAME_MODE_ID,
+  GAME_MODES,
+  GAME_PROPS_RANGES,
+} from "../../constants";
 
-const Inputs = ({ isEditable, refs }) => {
-  const { settings, actions } = useAppStore();
-  const { guesses, colors, pegs, allowDuplicates, allowBlanks } = settings;
+const Inputs = ({ isEditable, selectedModeId, refs }) => {
+  const disabled = !isEditable;
+  const { settings } = useAppStore();
   const { guessesRef, colorsRef, pegsRef, allowDuplicatesRef, allowBlanksRef } =
     refs;
-
-  const [inputValues, setInputValues] = useState({
-    guesses,
-    colors,
-    pegs,
-    allowDuplicates,
-    allowBlanks,
-  });
+  const [
+    { guesses, colors, pegs, allowDuplicates, allowBlanks },
+    setInputValues,
+  ] = useState(settings);
 
   const onInputChange = (value, settingKey) => {
     setInputValues((prevValues) => ({ ...prevValues, [settingKey]: value }));
-    // actions.setGameSettings({ id: "CUSTOM", [settingKey]: value });
   };
 
-  const disabled = !isEditable;
-  const getValue = (key) => (isEditable ? inputValues[key] : settings[key]);
+  useEffect(() => {
+    setInputValues((prevValues) =>
+      selectedModeId === CUSTOM_GAME_MODE_ID
+        ? prevValues
+        : GAME_MODES[selectedModeId]
+    );
+  }, [selectedModeId]);
+
   return (
     <div className="input-group">
       <div className="labels">
         <LabelComponent htmlFor="guessesNumber">Guesses:</LabelComponent>
         <LabelComponent htmlFor="colorsNumber">Colors:</LabelComponent>
-        <LabelComponent htmlFor="pegsNumber">Colors:</LabelComponent>
+        <LabelComponent htmlFor="pegsNumber">Pegs:</LabelComponent>
         <LabelComponent htmlFor="allowDuplicates">
           Allow Duplicates:
         </LabelComponent>
@@ -41,31 +47,31 @@ const Inputs = ({ isEditable, refs }) => {
         <Slider
           id="guessesNumber"
           ref={guessesRef}
-          value={getValue("guesses")}
+          value={guesses}
           disabled={disabled}
-          range={settings.ranges.guesses}
+          range={GAME_PROPS_RANGES.guesses}
           onSliderChange={(e) => onInputChange(+e.target.value, "guesses")}
         />
         <Slider
           id="colorsNumber"
           ref={colorsRef}
-          value={getValue("colors")}
+          value={colors}
           disabled={disabled}
-          range={settings.ranges.colors}
+          range={GAME_PROPS_RANGES.colors}
           onSliderChange={(e) => onInputChange(+e.target.value, "colors")}
         />
         <Slider
           id="pegsNumber"
           ref={pegsRef}
-          value={getValue("pegs")}
+          value={pegs}
           disabled={disabled}
-          range={settings.ranges.pegs}
+          range={GAME_PROPS_RANGES.pegs}
           onSliderChange={(e) => onInputChange(+e.target.value, "pegs")}
         />
         <Checkbox
           id="allowDuplicates"
           ref={allowDuplicatesRef}
-          checked={getValue("allowDuplicates")}
+          checked={allowDuplicates}
           disabled={disabled}
           onCheckboxChange={(e) =>
             onInputChange(e.target.checked, "allowDuplicates")
@@ -74,7 +80,7 @@ const Inputs = ({ isEditable, refs }) => {
         <Checkbox
           id="allowBlanks"
           ref={allowBlanksRef}
-          checked={getValue("allowBlanks")}
+          checked={allowBlanks}
           disabled={disabled}
           onCheckboxChange={(e) =>
             onInputChange(e.target.checked, "allowBlanks")
