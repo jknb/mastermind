@@ -14,7 +14,14 @@ export const COLORS = [
   "white",
 ];
 
-// https://chat.openai.com/share/2535473c-ddd2-468d-8294-abec0aa27d7a
+export const GAME_PROPS_RANGES = {
+  guesses: [6, 10],
+  colors: [4, 10],
+  pegs: [3, 7],
+};
+
+export const CUSTOM_GAME_MODE_ID = "CUSTOM";
+
 export const GAME_MODES = {
   EASY: {
     id: "EASY",
@@ -56,12 +63,6 @@ export const GAME_MODES = {
     allowDuplicates: false,
     allowBlanks: true,
   },
-};
-
-export const GAME_PROPS_RANGES = {
-  guesses: [6, 10],
-  colors: [4, 10],
-  pegs: [3, 7],
 };
 
 export const MODALS = {
