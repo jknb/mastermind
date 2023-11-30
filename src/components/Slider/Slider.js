@@ -4,7 +4,6 @@ const Slider = forwardRef(function Slider(
   { id, value, range = [0, 100], onSliderChange, disabled },
   ref
 ) {
-  console.log("di", disabled);
   const [minValue, maxValue] = range;
   return (
     <div>
