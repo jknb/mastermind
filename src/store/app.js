@@ -1,9 +1,11 @@
 import { create } from "zustand";
-import { GAME_MODES, GAME_PROPS_RANGES } from "../constants";
+import { GAME_MODES, LOCAL_STORAGE_KEYS } from "../constants";
 import { createCode } from "../utils";
 import useGameStatusStore from "./gameStatus";
 
-export const defaultGameMode = GAME_MODES.MEDIUM;
+const { $LOCAL_GAME_MODE } = LOCAL_STORAGE_KEYS;
+export const defaultGameMode =
+  JSON.parse(localStorage.getItem($LOCAL_GAME_MODE)) || GAME_MODES.MEDIUM;
 
 const useAppStore = create((set, get) => ({
   settings: defaultGameMode,
@@ -25,8 +27,13 @@ const useAppStore = create((set, get) => ({
         code: createCode(get().settings.pegs, get().settings.allowDuplicates),
       })),
     setCurrentRow: (rowIndex) => set(() => ({ currentRow: rowIndex })),
-    setGameSettings: (partialSettings) =>
-      set((state) => ({ settings: { ...state.settings, ...partialSettings } })),
+    setGameSettings: (newSettings) =>
+      set(() => {
+        localStorage.setItem($LOCAL_GAME_MODE, JSON.stringify(newSettings));
+        return {
+          settings: newSettings,
+        };
+      }),
   },
 }));
 

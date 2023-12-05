@@ -1,3 +1,8 @@
+export const LOCAL_STORAGE_KEYS = {
+  $LOCAL_GAME_MODE: "game_mode",
+  $LOCAL_THEME: "theme",
+};
+
 export const COLORS = [
   "red",
   "blue",
