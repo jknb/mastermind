@@ -16,18 +16,18 @@ export const transformColorsToNumbers = (colors) =>
 
 export const calculateRowResult = (guess, secretCode) => {
   const CODE_LENGTH = secretCode.length;
-  const result = { greenPegs: 0, redPegs: 0 };
+  const result = { exactMatchPegs: 0, colorMatchPegs: 0 };
 
   for (let i = 0; i < CODE_LENGTH; i++) {
     if (guess[i] === secretCode[i]) {
-      result.greenPegs++;
+      result.exactMatchPegs++;
     }
   }
 
   const answers = new Array(COLORS.length).fill(0);
   const guesses = new Array(COLORS.length).fill(0);
 
-  let GreensPlusReds = 0;
+  let summedGuesses = 0;
   COLORS.forEach((_, colorIndex) => {
     secretCode.forEach((code) => {
       if (colorIndex === code) {
@@ -40,9 +40,9 @@ export const calculateRowResult = (guess, secretCode) => {
       }
     });
 
-    GreensPlusReds += Math.min(answers[colorIndex], guesses[colorIndex]);
+    summedGuesses += Math.min(answers[colorIndex], guesses[colorIndex]);
   });
-  result.redPegs = GreensPlusReds - result.greenPegs;
+  result.colorMatchPegs = summedGuesses - result.exactMatchPegs;
 
   return result;
 };

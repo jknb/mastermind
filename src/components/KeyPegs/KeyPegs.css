@@ -3,13 +3,13 @@
   align-items: center;
 }
 
-.green-peg-container {
+.exact-match-peg-container {
   display: flex;
   align-items: center;
   padding-right: 8px;
 }
 
-.red-peg-container {
+.color-match-peg-container {
   display: flex;
   align-items: center;
   padding-left: 8px;

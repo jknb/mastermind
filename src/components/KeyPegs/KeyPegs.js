@@ -1,17 +1,17 @@
 import KeyPeg from "./KeyPeg";
 import "./KeyPegs.css";
 
-function KeyPegs({ greenPegs, redPegs }) {
+function KeyPegs({ exactMatchPegs, colorMatchPegs }) {
   return (
     <>
       <div className="keypeg-container">
-        <div className="green-peg-container">
-          <KeyPeg size="16px" backgroundColor="green" />
-          <span className="pegs-result">:{greenPegs}</span>
+        <div className="exact-match-peg-container">
+          <KeyPeg size="16px" backgroundColor="black" />
+          <span className="pegs-result">:{exactMatchPegs}</span>
         </div>
-        <div className="red-peg-container">
-          <KeyPeg size="16px" backgroundColor="red" />
-          <span className="pegs-result">:{redPegs}</span>
+        <div className="color-match-peg-container">
+          <KeyPeg size="16px" backgroundColor="white" />
+          <span className="pegs-result">:{colorMatchPegs}</span>
         </div>
       </div>
     </>

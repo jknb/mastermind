@@ -16,7 +16,10 @@ const Row = ({ index }) => {
     new Array(settings.pegs).fill(null).map(() => "white")
   );
   const [isChecked, setIsChecked] = useState(false);
-  const [keyPegs, setKeyPegs] = useState({ greenPegs: 0, redPegs: 0 });
+  const [keyPegs, setKeyPegs] = useState({
+    exactMatchPegs: 0,
+    colorMatchPegs: 0,
+  });
 
   const isActive = index === currentRow;
   const isLast = index === settings.guesses - 1;
@@ -32,7 +35,7 @@ const Row = ({ index }) => {
     );
     setKeyPegs(rowResult);
 
-    const isWinner = rowResult.greenPegs === code.length;
+    const isWinner = rowResult.exactMatchPegs === code.length;
     const isFinished = isWinner || isLast;
     if (isFinished) {
       endGame(isWinner);
@@ -51,7 +54,7 @@ const Row = ({ index }) => {
     isActive &&
     codePegsColors.every((peg) => peg !== "white");
 
-  const { greenPegs, redPegs } = keyPegs;
+  const { exactMatchPegs, colorMatchPegs } = keyPegs;
   return (
     <div className="row">
       <div key={closedCircleGridKey} className="codePegs">
@@ -60,7 +63,10 @@ const Row = ({ index }) => {
       <div className="check-container">
         {isChecked ? (
           <div className="keyPegs">
-            <KeyPegs greenPegs={greenPegs} redPegs={redPegs} />
+            <KeyPegs
+              exactMatchPegs={exactMatchPegs}
+              colorMatchPegs={colorMatchPegs}
+            />
           </div>
         ) : (
           <CheckButton
