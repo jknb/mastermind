@@ -1,11 +1,11 @@
 import { COLORS } from "../constants";
 
 // export const createCode = () => [1, 1, 1, 1];
-export const createCode = (numberOfPegs, withDuplicates) =>
+export const createCode = (numberOfPegs, withDuplicates, numberOfColors) =>
   Array.from({ length: numberOfPegs }).reduce((code) => {
     let newDigit;
     do {
-      newDigit = Math.floor(Math.random() * 9);
+      newDigit = Math.floor(Math.random() * numberOfColors);
     } while (!withDuplicates && code.includes(newDigit));
 
     return code.concat(newDigit);

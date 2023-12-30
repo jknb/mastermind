@@ -6,11 +6,11 @@ function KeyPegs({ exactMatchPegs, colorMatchPegs }) {
     <>
       <div className="keypeg-container">
         <div className="exact-match-peg-container">
-          <KeyPeg size="16px" backgroundColor="black" />
+          <KeyPeg size="16px" backgroundColor="black" borderColor="white" />
           <span className="pegs-result">:{exactMatchPegs}</span>
         </div>
         <div className="color-match-peg-container">
-          <KeyPeg size="16px" backgroundColor="white" />
+          <KeyPeg size="16px" backgroundColor="white" borderColor="black" />
           <span className="pegs-result">:{colorMatchPegs}</span>
         </div>
       </div>

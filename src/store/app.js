@@ -9,7 +9,11 @@ export const defaultGameMode =
 
 const useAppStore = create((set, get) => ({
   settings: defaultGameMode,
-  code: createCode(defaultGameMode.pegs, defaultGameMode.allowDuplicates),
+  code: createCode(
+    defaultGameMode.pegs,
+    defaultGameMode.allowDuplicates,
+    defaultGameMode.colors
+  ),
   currentRow: 0,
   gameKey: true,
 
@@ -24,7 +28,11 @@ const useAppStore = create((set, get) => ({
     },
     setNewCode: () =>
       set(() => ({
-        code: createCode(get().settings.pegs, get().settings.allowDuplicates),
+        code: createCode(
+          get().settings.pegs,
+          get().settings.allowDuplicates,
+          get().settings.colors
+        ),
       })),
     setCurrentRow: (rowIndex) => set(() => ({ currentRow: rowIndex })),
     setGameSettings: (newSettings) =>

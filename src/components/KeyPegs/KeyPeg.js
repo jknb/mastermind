@@ -1,9 +1,9 @@
-function KeyPeg({ size = "16px", backgroundColor = "white" }) {
+function KeyPeg({ size = "16px", backgroundColor, borderColor }) {
   const circleStyle = {
     width: size,
     height: size,
     borderRadius: "50%",
-    border: "3px solid var(--small_circle__border_color)",
+    border: `3px solid ${borderColor}`,
     background: backgroundColor,
   };
 
