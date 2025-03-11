@@ -1,11 +1,8 @@
 # The classic Mastermind game. 
 Comes with various difficulty levels both preset and customizable.
 ------------------------------------------------------------------
-\n\n\n\n
-
-
-
-
+------------------------------------------------------------------
+------------------------------------------------------------------
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
