@@ -1,5 +1,6 @@
-# The classic Mastermind game. Comes with various difficulty levels both preset and customizable.
--------------------------------------------------------------------------------------------------
+# The classic Mastermind game. 
+Comes with various difficulty levels both preset and customizable.
+------------------------------------------------------------------
 
 # Getting Started with Create React App
 
