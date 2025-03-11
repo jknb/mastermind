@@ -1,7 +1,7 @@
 # The classic Mastermind game. 
 Comes with various difficulty levels both preset and customizable.
 ------------------------------------------------------------------
-
+\n\n\n\n
 
 
 
