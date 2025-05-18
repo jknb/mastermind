@@ -9,7 +9,7 @@ body {
 .app-container {
   border: 1px solid black;
   border-radius: 24px;
-  padding: 16px;
+  padding: 12px 16px;
   background-color: var(--app_container__background_color);
 }
 

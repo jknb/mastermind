@@ -1,20 +1,20 @@
 .row {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
-  gap: 48px;
+  /* gap: 48px; */
 }
 
 .check-container {
-  width: 128px;
   display: flex;
   justify-content: center;
+  margin-left: auto;
 }
 
 .codePegs {
   display: flex;
-  gap: 24px;
-  margin: 16px 0 16px 6px;
+  gap: 4px;
+  margin: 8px 0;
 }
 
 .keyPegs {
